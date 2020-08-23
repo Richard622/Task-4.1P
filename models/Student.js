@@ -1,90 +1,116 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
+
 const studentSchema = new mongoose.Schema(
     {
+        
         //country: String,
         The_country: 
         {
             type: String,
-            trim: true,
-            lowercase: true,
-            
+            required: [true, "countery required"],
         },
         The_fname: 
         {
-            type:String,
-            validator(value){
-                if(!validator.isAlpha(value)){
-                    throw new Error('name is not valid!')
-                }
+            type: String,
+            required: [true, "first name required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "first name is not valid",
             },
         },
         The_lname: 
         {
-            type:String,
-            validator(value){
-                if(!validator.isAlpha(value)){
-                    throw new Error('name is not valid!')
-                }
-            }  
+            type: String,
+            required: [true, "last name required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "last name is not valid",
+            },
         },
         The_email: 
         {
             type: String,
-            trim: true,
-            lowercase: true,
-            validator(value){
-                if(!validator.isEmail(value)){
-                    throw new Error('Email is not valid!')
-                }
+            required: [true, "email required"],
+            validate: {
+                validator: function(value){
+                    return validator.isEmail(value)
+                },
+                message: "Email is not valid",
             }
         },
         The_password: 
         {
-            required: true,
             type: String,
-            validator(value){
-                if(!validator.isLength(value,{min:8,max: undefined})){
-                    throw new Error('password is not valid!')
-                }
-            }
-            
+            required: [true, "password required"],
+            minlength: [8, "password must more than 8 characters"]
         },
+
         The_confirm_password: 
         {
             type: String,
-            trim: true,
-            lowercase: true, 
+            required: [true, "password required"],
+            minlength: [8, "password must more than 8 characters"],
+          
         },
         The_city: 
         {
             type: String,
-            trim: true,
-            lowercase: true, 
+            required: [true, "password required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "city is not valid",
+            },
         },
         The_mpn:
         {
             type: String,
-            trim: true,
-            lowercase: true, 
+            required: [true, "phone number required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "number is not valid",
+            },
         },
         The_state: 
         {
             type: String,
-            trim: true,
-            lowercase: true, 
+            required: [true, "state required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "state is not valid",
+            },
         },
         The_address: 
         {
             type: String,
-            trim: true,
-            lowercase: true, 
+            required: [true, "address required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "address is not valid",
+            },
         },
         The_ZIP: 
         {
             type: String,
-            trim: true,
-            lowercase: true, 
+            required: [true, "ZIP number required"],
+            validate: {
+                validator: function(value){
+                    return validator.isAlpha(value)
+                },
+                message: "ZIP / Post number is not valid",
+            },
         },
         
     }
